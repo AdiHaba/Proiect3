@@ -17,7 +17,7 @@ public class SlotMove extends JPanel {
     public SlotMove(){
 
         try{
-            bg = ImageIO.read(getClass().getResource("lamaie.jpg"));
+            bg = ImageIO.read(getClass().getResource("images/lamaie.JPG"));
         }catch (IOException e){
             e.printStackTrace();
         }

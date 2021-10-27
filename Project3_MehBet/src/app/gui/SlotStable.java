@@ -17,7 +17,7 @@ public class SlotStable extends JPanel {
     public SlotStable(){
 
         try{
-            bg = ImageIO.read(getClass().getResource("lamaie.jpg"));
+            bg = ImageIO.read(getClass().getResource("images/lamaie.JPG"));
         }catch (IOException e){
             e.printStackTrace();
         }
