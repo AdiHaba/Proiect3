@@ -30,12 +30,23 @@ public class SlotMachine {
         _centerPanel = new JPanel();
         _centerPanel.setLayout(new GridLayout(3,5));
 
-        try{
-            bg = ImageIO.read(getClass().getResource("seven.jpg"));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
 
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
+        _centerPanel.add(new SlotPanel1());
     }
 
     public void myFrame(){
@@ -45,6 +56,6 @@ public class SlotMachine {
     }
 
     public static void main(String[] args) {
-
+       SlotPanel1 s = new SlotPanel1();
     }
 }
