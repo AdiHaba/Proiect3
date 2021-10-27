@@ -2,6 +2,6 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("gg");
         System.out.println("ff");
-        System.out.println("hitz");
+        System.out.println("hitzz");
     }
 }
