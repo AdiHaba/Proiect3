@@ -9,8 +9,6 @@ import java.io.IOException;
 public class SlotStable extends JPanel {
 
     private BufferedImage _image;
-    private int yOffset = 0;
-    private int yDelta = 4;
 
     public SlotStable(BufferedImage _image){
         this._image = _image;
@@ -18,7 +16,7 @@ public class SlotStable extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-       return new Dimension(115,155);
+       return new Dimension(118,118);
     }
 
     @Override
@@ -26,12 +24,13 @@ public class SlotStable extends JPanel {
 
         super.paintComponent(g);
 
-        int xPos = (getWidth() - _image.getWidth()) / 2;
-        int yPos = yOffset = 0;
-
         Graphics2D g2d = (Graphics2D) g.create();
-          g2d.drawImage(_image,xPos,yPos,this);
+          g2d.drawImage(_image,0,0,this);
 
+    }
+
+    public void setImage(BufferedImage image){
+        _image = image;
     }
 
 }
