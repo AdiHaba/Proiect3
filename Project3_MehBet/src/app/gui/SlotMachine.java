@@ -82,7 +82,6 @@ public class SlotMachine {
 
     public static void main(String[] args) {
       SlotMachine s = new SlotMachine();
-      System.out.println(1);
     }
 
 
