@@ -34,7 +34,7 @@ public class SpinThread extends Thread{
         Random r = new Random();
          int time = 5;
 
-        for(int k = 0 ; k < 15; ++k) {
+        for(int k = 0 ; k < 10; ++k) {
 
             for (int j = 0; j < 5; ++j) {
                 for (int i = 2; i >= 1; --i) {
@@ -131,11 +131,10 @@ public class SpinThread extends Thread{
             }
             System.out.println();
         }
-
         double sum=0;
         WinSpin c;
 
-        c = new WinSpin(linie[0],10);
+        c= new WinSpin(linie[0],10);
         sum=sum+ c.getWin();
         System.out.println("Ai castigat " + c.getWin() + " de pe linia 1");
         c=new WinSpin(linie[1],10);

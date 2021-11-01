@@ -1,114 +1,112 @@
 package app.gui;
 
 public class WinSpin {
-    
-    public int[] _semn;
-    public double _win = 0;
 
-    public WinSpin(int[] _semn, int sum){
+    public int[] semn= new int[5];
+    public double win=0;
 
-        _semn= new int[5];
-        
+    public double getWin() {
+        return win;
+    }
+
+    public WinSpin(int[] semn, int sum){
+
         int numar=0;
-        if(_semn[0]==_semn[1] && _semn[1] == _semn[2])
+        if(semn[0]==semn[1] && semn[1] == semn[2])
             numar=3;
-        if(_semn[0]==_semn[1] && _semn[1] == _semn[2] && _semn[2] == _semn[3])
+        if(semn[0]==semn[1] && semn[1] == semn[2] && semn[2] == semn[3])
             numar=4;
-        if(_semn[0]==_semn[1] && _semn[1] == _semn[2] && _semn[2] == _semn[3] && _semn[3] == _semn[4])
+        if(semn[0]==semn[1] && semn[1] == semn[2] && semn[2] == semn[3] && semn[3] == semn[4])
             numar=5;
 
 
         for(int j=0;j<5;j++){
-            if(_semn[0]==1){
+            if(semn[0]==1){
                 if(numar==3){
-                    _win=0.25*sum;
+                    win=0.25*sum;
                 }
                 else if(numar==4){
-                    _win=0.5*sum;
+                    win=0.5*sum;
                 }
                 else if(numar==5){
-                    _win=sum;
+                    win=sum;
                 }
-                else _win=0;
+                else win=0;
             }
-            else if(_semn[0]==2){
+            else if(semn[0]==2){
                 if(numar==3){
-                    _win=0.5*sum;
+                    win=0.5*sum;
                 }
                 else if(numar==4){
-                    _win=sum;
+                    win=sum;
                 }
                 else if(numar==5){
-                    _win=1.5*sum;
+                    win=1.5*sum;
                 }
-                else _win=0;
+                else win=0;
             }
-            else if(_semn[0]==3){
+            else if(semn[0]==3){
                 if(numar==3){
-                    _win=sum;
+                    win=sum;
                 }
                 else if(numar==4){
-                    _win=2*sum;
+                    win=2*sum;
                 }
                 else if(numar==5){
-                    _win=3*sum;
+                    win=3*sum;
                 }
-                else _win=0;
+                else win=0;
             }
-            else if(_semn[0]==4){
+            else if(semn[0]==4){
                 if(numar==3){
-                    _win=2*sum;
+                    win=2*sum;
                 }
                 else if(numar==4){
-                    _win=6*sum;
+                    win=6*sum;
                 }
                 else if(numar==5){
-                    _win=9*sum;
+                    win=9*sum;
                 }
-                else _win=0;
+                else win=0;
             }
-            else if(_semn[0]==5){
+            else if(semn[0]==5){
                 if(numar==3){
-                    _win=3*sum;
+                    win=3*sum;
                 }
                 else if(numar==4){
-                    _win=9*sum;
+                    win=9*sum;
                 }
                 else if(numar==5){
-                    _win=15*sum;
+                    win=15*sum;
                 }
-                else _win=0;
+                else win=0;
             }
-            else if(_semn[0]==6){
+            else if(semn[0]==6){
                 if(numar==3){
-                    _win=5*sum;
+                    win=5*sum;
                 }
                 else if(numar==4){
-                    _win=10*sum;
+                    win=10*sum;
                 }
                 else if(numar==5){
-                    _win=25*sum;
+                    win=25*sum;
                 }
-                else _win=0;
+                else win=0;
             }
-            else if(_semn[0]==7){
+            else if(semn[0]==7){
                 if(numar==3){
-                    _win=25*sum;
+                    win=25*sum;
                 }
                 else if(numar==4){
-                    _win=50*sum;
+                    win=50*sum;
                 }
                 else if(numar==5){
-                    _win=100*sum;
+                    win=100*sum;
                 }
-                else _win=0;
+                else win=0;
             }
 
         }
-    }
-
-    public double getWin() {
-        return _win;
     }
 
 }
