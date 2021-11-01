@@ -9,9 +9,11 @@ import java.util.Random;
 
 public class SlotMachine {
 
-    private JPanel _mainPanel, _centerPanel;
+    private JPanel _mainPanel, _centerPanel,_botPanel;
     private JFrame _frame;
     private JButton _spin;
+    private JButton set;
+    private JTextField suma;
     private SlotStable[][] _slots;
     private int[][] _valueSlots;
     private BufferedImage _cireasa = null , _lamaie = null, _lebenita = null, _portocale = null,
@@ -29,9 +31,22 @@ public class SlotMachine {
 
        _mainPanel.add(_centerPanel,BorderLayout.CENTER);
        _spin = new JButton("Spin");
-       _spin.addActionListener(new SpinEvent(_slots,_valueSlots, _cireasa , _lamaie , _lebenita , _portocale , _pruna , _struguri, _sapte));
 
-       _mainPanel.add(_spin,BorderLayout.PAGE_END);
+       _spin.addActionListener(new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte));
+
+
+        ////////////////////////v//////////////////latacode
+        _botPanel = new JPanel();
+        _botPanel.setLayout(new FlowLayout());
+
+        set = new JButton("Set");
+        suma = new JTextField();
+        suma.setPreferredSize(new Dimension(20,20));
+        _botPanel.add(set);
+        _botPanel.add(suma);
+        _mainPanel.add(_botPanel,BorderLayout.SOUTH);
+        ///////////////////////^//////////////////latacode
+        _botPanel.add(_spin,BorderLayout.PAGE_END);
 
         myFrame();
     }
@@ -118,7 +133,7 @@ public class SlotMachine {
         _frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         _frame.setLocation(500,90);
         _frame.setResizable(false);
-        _frame.setSize(700,450);
+        _frame.setSize(800,600);
         _frame.setVisible(true);
     }
 
