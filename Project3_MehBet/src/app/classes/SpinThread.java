@@ -3,7 +3,11 @@ package app.classes;
 import app.gui.SlotStable;
 import app.gui.WinSpin;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Random;
 
 public class SpinThread extends Thread{
@@ -11,6 +15,8 @@ public class SpinThread extends Thread{
     private SlotStable[][] _slots;
     private int[][] _valueSlots;
     private BufferedImage _cireasa , _lamaie , _lebenita , _portocale , _pruna , _struguri, _sapte;
+    Clip _clip;
+
 
     public SpinThread(SlotStable[][] _slots, int[][] _valueSlots,BufferedImage _cireasa, BufferedImage _lamaie,
                       BufferedImage _lebenita, BufferedImage _portocale, BufferedImage _pruna, BufferedImage _struguri,
@@ -30,6 +36,20 @@ public class SpinThread extends Thread{
 
     @Override
     public void run(){
+
+        try {
+            AudioInputStream audioInputStream =
+                    AudioSystem.getAudioInputStream(getClass().getResource("Project3_MehBet/src/app/gui/audio/slotAudio.wav"));
+
+            _clip = AudioSystem.getClip();
+
+            _clip.open(audioInputStream);
+            _clip.loop(Clip.LOOP_CONTINUOUSLY);
+
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+
 
         Random r = new Random();
          int time = 5;
