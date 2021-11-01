@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public class SlotMachine {
@@ -22,33 +23,71 @@ public class SlotMachine {
 
     public SlotMachine(){
 
-         readImages();
+        if(SwingUtilities.isEventDispatchThread()){
 
-        _mainPanel = new JPanel();
-        _mainPanel.setLayout(new BorderLayout());
+            readImages();
 
-        initializeMyCenterPanelStable();
+            _mainPanel = new JPanel();
+            _mainPanel.setLayout(new BorderLayout());
 
-       _mainPanel.add(_centerPanel,BorderLayout.CENTER);
-       _spin = new JButton("Spin");
+            initializeMyCenterPanelStable();
 
-       _spin.addActionListener(new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte));
+            _mainPanel.add(_centerPanel,BorderLayout.CENTER);
+            _spin = new JButton("Spin");
+
+            _spin.addActionListener(new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte));
 
 
-        ////////////////////////v//////////////////latacode
-        _botPanel = new JPanel();
-        _botPanel.setLayout(new FlowLayout());
+            ////////////////////////v//////////////////latacode
+            _botPanel = new JPanel();
+            _botPanel.setLayout(new FlowLayout());
 
-        set = new JButton("Set");
-        suma = new JTextField();
-        suma.setPreferredSize(new Dimension(20,20));
-        _botPanel.add(set);
-        _botPanel.add(suma);
-        _mainPanel.add(_botPanel,BorderLayout.SOUTH);
-        ///////////////////////^//////////////////latacode
-        _botPanel.add(_spin,BorderLayout.PAGE_END);
+            set = new JButton("Set");
+            suma = new JTextField();
+            suma.setPreferredSize(new Dimension(20,20));
+            _botPanel.add(set);
+            _botPanel.add(suma);
+            _mainPanel.add(_botPanel,BorderLayout.SOUTH);
+            ///////////////////////^//////////////////latacode
+            _botPanel.add(_spin,BorderLayout.PAGE_END);
 
-        myFrame();
+            myFrame();
+        }else{
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    readImages();
+
+                    _mainPanel = new JPanel();
+                    _mainPanel.setLayout(new BorderLayout());
+
+                    initializeMyCenterPanelStable();
+
+                    _mainPanel.add(_centerPanel,BorderLayout.CENTER);
+                    _spin = new JButton("Spin");
+
+                    _spin.addActionListener(new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte));
+
+
+                    ////////////////////////v//////////////////latacode
+                    _botPanel = new JPanel();
+                    _botPanel.setLayout(new FlowLayout());
+
+                    set = new JButton("Set");
+                    suma = new JTextField();
+                    suma.setPreferredSize(new Dimension(20,20));
+                    _botPanel.add(set);
+                    _botPanel.add(suma);
+                    _mainPanel.add(_botPanel,BorderLayout.SOUTH);
+                    ///////////////////////^//////////////////latacode
+                    _botPanel.add(_spin,BorderLayout.PAGE_END);
+
+                    myFrame();
+                }
+            });
+        }
+
     }
 
     public void initializeMyCenterPanelStable(){
@@ -138,7 +177,21 @@ public class SlotMachine {
     }
 
     public static void main(String[] args) {
-      SlotMachine s = new SlotMachine();
+
+        try{
+            SwingUtilities.invokeAndWait(new Runnable() {
+                @Override
+                public void run() {
+                    SlotMachine s = new SlotMachine();
+                }
+            });
+        }catch(InterruptedException e){
+            System.out.println("... s-a intrerupt executia!");
+        }
+        catch (InvocationTargetException ex){
+            System.out.println("... eroare in metoda run() ");
+        }
+
     }
 
 
