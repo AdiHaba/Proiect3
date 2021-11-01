@@ -34,6 +34,5 @@ public class SpinEvent implements ActionListener {
         t1 = new SpinThread(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte);
         t1.start();
 
-
     }
 }
