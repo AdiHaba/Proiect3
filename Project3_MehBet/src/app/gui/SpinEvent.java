@@ -4,9 +4,11 @@ import app.classes.SpinThread;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-public class SpinEvent implements ActionListener {
+public class SpinEvent implements ActionListener, KeyListener {
 
     private SlotStable[][] _slots;
     private int[][] _valueSlots;
@@ -33,6 +35,24 @@ public class SpinEvent implements ActionListener {
 
         t1 = new SpinThread(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte);
         t1.start();
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            t1 = new SpinThread(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte);
+            t1.start();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
 
     }
 }
