@@ -1,4 +1,4 @@
-package MehBet.hababranch;
+package app.bjhl;
 public class Deck {
     private Card [] deck;
     private int dealt;

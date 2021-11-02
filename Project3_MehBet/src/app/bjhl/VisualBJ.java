@@ -1,7 +1,14 @@
-package MehBet.hababranch;
+package app.bjhl;
+import app.meniu.MainMenu;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -13,6 +20,7 @@ import javax.swing.JTextField;
 
 public class VisualBJ extends JFrame implements ActionListener{
 
+	JButton back;
 	JButton hit;
 	JButton stay;
 	JButton deal;
@@ -43,6 +51,28 @@ public class VisualBJ extends JFrame implements ActionListener{
 		setBackground(new Color(23, 56, 64));
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		setSize(500, 345);
+		back = new JButton("Back to Menu");
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				try{
+					MainMenu app = new MainMenu();
+					app.addWindowListener(new WindowAdapter() {
+						public void windowClosing(WindowEvent e) {
+							System.exit(0);
+						}
+					});
+					dispose();
+				}catch(UnsupportedAudioFileException ex){
+					ex.printStackTrace();
+				}catch(IOException exx){
+					exx.printStackTrace();
+				}catch( LineUnavailableException exxxx){
+					exxxx.printStackTrace();
+				}
+			}
+		});
 		hit = new JButton("Hit");
 		stay = new JButton("Stay");
 		deal = new JButton("Deal");
@@ -79,6 +109,7 @@ public class VisualBJ extends JFrame implements ActionListener{
 		buttons2.add(bet);
 		buttons2.add(bettf);
 		buttons2.add(doubledown);
+		buttons2.add(back);
 		bet.setActionCommand("Bet");
 		bet.addActionListener(this);
 		add(dealer);
