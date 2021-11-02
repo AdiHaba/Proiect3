@@ -1,5 +1,7 @@
 
 package Main;
+import app.classes.Admin;
+
 import java.util.Random;
 
 public class Test {
@@ -19,5 +21,8 @@ public class Test {
             System.out.println("Ai castigat");
         }
         else System.out.println("nu ai castigat");
+
+       /* Admin admin = Admin.getInstance();
+        admin.changePassword("admin");*/
     }
 }

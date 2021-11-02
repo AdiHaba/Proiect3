@@ -15,8 +15,8 @@ public class SpinThread extends Thread{
     private SlotStable[][] _slots;
     private int[][] _valueSlots;
     private BufferedImage _cireasa , _lamaie , _lebenita , _portocale , _pruna , _struguri, _sapte;
-    Clip _clip;
-
+    private Clip _clip;
+    private static String filePath = "C:\\Users\\Daniel\\Proiect3\\Project3_MehBet\\src\\app\\gui\\audio\\slotAudio.wav";
 
     public SpinThread(SlotStable[][] _slots, int[][] _valueSlots,BufferedImage _cireasa, BufferedImage _lamaie,
                       BufferedImage _lebenita, BufferedImage _portocale, BufferedImage _pruna, BufferedImage _struguri,
@@ -39,12 +39,12 @@ public class SpinThread extends Thread{
 
         try {
             AudioInputStream audioInputStream =
-                    AudioSystem.getAudioInputStream(getClass().getResource("Project3_MehBet/src/app/gui/audio/slotAudio.wav"));
+                    AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
 
             _clip = AudioSystem.getClip();
 
             _clip.open(audioInputStream);
-            _clip.loop(Clip.LOOP_CONTINUOUSLY);
+            _clip.start();
 
         } catch (Exception e) {
            e.printStackTrace();
@@ -54,7 +54,7 @@ public class SpinThread extends Thread{
         Random r = new Random();
          int time = 5;
 
-        for(int k = 0 ; k < 10; ++k) {
+        for(int k = 0 ; k < 16; ++k) {
 
             for (int j = 0; j < 5; ++j) {
                 for (int i = 2; i >= 1; --i) {
@@ -122,6 +122,7 @@ public class SpinThread extends Thread{
          time += 5;
 
         }
+        _clip.stop();
 
         int[][] linie = new int[5][5];
         for(int j = 0;j<5;j++) {
