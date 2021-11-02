@@ -1,6 +1,11 @@
 package app.meniu;
 
 
+import app.bjhl.VisualBJ;
+import app.bjhl.VisualHL;
+import app.gui.AdminGui;
+import app.gui.SlotMachine;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.applet.Applet;
@@ -156,7 +161,7 @@ public class MainMenu extends JFrame {
 	    DataLine.Info info;
 	    Clip clip;
 
-	    File background_music = new File("C:\\Users\\40743\\Desktop\\Proiect3\\Project3_MehBet\\src\\app\\meniu\\bankrupt.wav");
+	    File background_music = new File("C:\\Users\\Daniel\\Desktop\\Proiect3\\Project3_MehBet\\src\\app\\meniu\\bankrupt.wav");
 
 	    stream = AudioSystem.getAudioInputStream(background_music);
 	    format = stream.getFormat();
@@ -170,7 +175,7 @@ public class MainMenu extends JFrame {
 		DataLine.Info info2;
 		Clip clip2;
 
-		File background_music2 = new File("C:\\Users\\40743\\Desktop\\Proiect3\\Project3_MehBet\\src\\app\\meniu\\bankrupt2.wav");
+		File background_music2 = new File("C:\\Users\\Daniel\\Desktop\\Proiect3\\Project3_MehBet\\src\\app\\meniu\\bankrupt2.wav");
 
 		stream2 = AudioSystem.getAudioInputStream(background_music2);
 		format2 = stream.getFormat();
@@ -257,6 +262,46 @@ public class MainMenu extends JFrame {
         setLocation((int) width/2-427, (int) height/2 - 235);
 		setUndecorated(true);
 		setVisible(true);
+
+		hl.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VisualHL("HighLow").show();
+                clip.stop();
+				clip2.stop();
+				dispose();
+			}
+		});
+
+		bj.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new VisualBJ("BlackJack").show();
+				clip.stop();
+				clip2.stop();
+				dispose();
+			}
+		});
+
+		admin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AdminGui();
+				clip.stop();
+				clip2.stop();
+				dispose();
+			}
+		});
+
+		slots.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SlotMachine();
+				clip.stop();
+				clip2.stop();
+				dispose();
+			}
+		});
 
 		show();
 	}

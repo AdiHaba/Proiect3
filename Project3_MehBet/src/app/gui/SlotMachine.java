@@ -1,10 +1,13 @@
 package app.gui;
 
+import app.meniu.MainMenu;
+
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -22,7 +25,8 @@ public class SlotMachine {
     private ImageIcon _spinIcon,_gambleIcon;
     private JToggleButton _bet10,_bet20,_bet50,_bet100,_bet200;
     private final  Color customColor = new Color(13, 0, 43);
-    private JLabel _soldLabelText,_soldLabel, _currentWinLabelText,_currentWinLabel;
+    private JLabel _soldLabel,_currentWinLabel;
+    private JButton _backToMenu;
 
     public SlotMachine(){
 
@@ -247,13 +251,36 @@ public class SlotMachine {
             e.printStackTrace();
         }
 
+        _backToMenu = new JButton("Back to Menu");
+         _backToMenu.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 try{
+                     MainMenu app = new MainMenu();
+                     app.addWindowListener(new WindowAdapter() {
+                         public void windowClosing(WindowEvent e) {
+                             System.exit(0);
+                         }
+                     });
+                     _frame.dispose();
+                 }catch(UnsupportedAudioFileException ex){
+                     ex.printStackTrace();
+                 }catch(IOException exx){
+                     exx.printStackTrace();
+                 }catch( LineUnavailableException exxxx){
+                     exxxx.printStackTrace();
+                 }
+             }
+         });
+
         _botPanel.add(_bet10);
         _botPanel.add(_bet20);
         _botPanel.add(_bet50);
         _botPanel.add(_bet100);
         _botPanel.add(_bet200);
         _botPanel.add(_spin);
-        _botPanel.add(_gamble);
+        //_botPanel.add(_gamble);
+        _botPanel.add(_backToMenu);
 
     }
 
@@ -265,10 +292,10 @@ public class SlotMachine {
         _soldLabel.setForeground(Color.WHITE);
         _soldLabel.setPreferredSize(new Dimension(30,20));
 
-        _soldLabelText = new JLabel();
+        /*_soldLabelText = new JLabel();
         _soldLabelText.setForeground(Color.WHITE);
         _soldLabel.setPreferredSize(new Dimension(30,20));
-        _soldLabelText.setText("50");
+        _soldLabelText.setText("50");*/
 
         _topPanel.add(_soldLabel);
     }

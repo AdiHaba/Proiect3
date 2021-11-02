@@ -1,7 +1,12 @@
-package MehBet.hababranch;
+package app.bjhl;
+import app.meniu.MainMenu;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class VisualHL extends JFrame implements ActionListener{
@@ -9,7 +14,8 @@ public class VisualHL extends JFrame implements ActionListener{
 	JButton higher = new JButton("Higher");
 	JButton lower = new JButton("Lower");
 	JButton newgame = new JButton("New Game");
-	
+	JButton back_to_menu = new JButton("Back to Menu");
+
 	JTextField numcorrect = new JTextField(5);
 	JTextField tf = new JTextField(20);
 	
@@ -44,7 +50,30 @@ public class VisualHL extends JFrame implements ActionListener{
 		add(label);
 		add(numcorrect);
 		add(newgame);
-		
+
+		back_to_menu.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try{
+					MainMenu app = new MainMenu();
+					app.addWindowListener(new WindowAdapter() {
+						public void windowClosing(WindowEvent e) {
+							System.exit(0);
+						}
+					});
+					dispose();
+				}catch(UnsupportedAudioFileException ex){
+					ex.printStackTrace();
+				}catch(IOException exx){
+					exx.printStackTrace();
+				}catch( LineUnavailableException exxxx){
+					exxxx.printStackTrace();
+				}
+			}
+		});
+		add(back_to_menu);
+
+
 		higher.setActionCommand("Higher");
 		lower.setActionCommand("Lower");
 		newgame.setActionCommand("New Game");

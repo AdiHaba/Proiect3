@@ -1,4 +1,4 @@
-package MehBet.hababranch;
+package app.bjhl;
 import java.util.ArrayList;
 
 public class Hand 

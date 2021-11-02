@@ -1,4 +1,4 @@
-package MehBet.hababranch;
+package app.bjhl;
 public class BJHand extends Hand
 {
 	public BJHand()
