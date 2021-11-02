@@ -4,6 +4,7 @@ package app.meniu;
 import app.bjhl.VisualBJ;
 import app.bjhl.VisualHL;
 import app.gui.AdminGui;
+import app.gui.AdminLoginForm;
 import app.gui.SlotMachine;
 
 import javax.sound.sampled.*;
@@ -286,7 +287,7 @@ public class MainMenu extends JFrame {
 		admin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AdminGui();
+				new AdminLoginForm();
 				clip.stop();
 				clip2.stop();
 				dispose();

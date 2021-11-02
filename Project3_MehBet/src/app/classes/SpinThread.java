@@ -6,6 +6,7 @@ import app.gui.WinSpin;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Random;
@@ -17,10 +18,13 @@ public class SpinThread extends Thread{
     private BufferedImage _cireasa , _lamaie , _lebenita , _portocale , _pruna , _struguri, _sapte;
     private Clip _clip;
     private static String filePath = "C:\\Users\\Daniel\\Proiect3\\Project3_MehBet\\src\\app\\gui\\audio\\slotAudio.wav";
+    private JTextPane _win;
+    private double _bet;
+    private JTextField _sold;
 
     public SpinThread(SlotStable[][] _slots, int[][] _valueSlots,BufferedImage _cireasa, BufferedImage _lamaie,
                       BufferedImage _lebenita, BufferedImage _portocale, BufferedImage _pruna, BufferedImage _struguri,
-                      BufferedImage _sapte){
+                      BufferedImage _sapte, JTextPane _win, double _bet, JTextField _sold){
 
         this._valueSlots = _valueSlots;
         this._slots = _slots;
@@ -31,7 +35,9 @@ public class SpinThread extends Thread{
         this._pruna = _pruna;
         this._struguri =_struguri;
         this._sapte = _sapte;
-
+        this._win = _win;
+        this._bet = _bet;
+        this._sold = _sold;
     }
 
     @Override
@@ -147,32 +153,32 @@ public class SpinThread extends Thread{
                     linie[j][3] = _valueSlots[1][3];
                     linie[j][4] = _valueSlots[0][4];
                 }
-                System.out.print(linie[j][i] + " ");
 
             }
-            System.out.println();
         }
         double sum=0;
         WinSpin c;
 
-        c= new WinSpin(linie[0],10);
+        c= new WinSpin(linie[0],_bet);
         sum=sum+ c.getWin();
-        System.out.println("Ai castigat " + c.getWin() + " de pe linia 1");
-        c=new WinSpin(linie[1],10);
+        //System.out.println("Ai castigat " + c.getWin() + " de pe linia 1");
+        c=new WinSpin(linie[1],_bet);
         sum = sum + c.getWin();
-        System.out.println("Ai castigat " + c.getWin() + " de pe linia 2");
-        c=new WinSpin(linie[2],10);
+        //System.out.println("Ai castigat " + c.getWin() + " de pe linia 2");
+        c=new WinSpin(linie[2],_bet);
         sum = sum + c.getWin();
-        System.out.println("Ai castigat " + c.getWin() + " de pe linia 3");
-        c=new WinSpin(linie[3],10);
+       // System.out.println("Ai castigat " + c.getWin() + " de pe linia 3");
+        c=new WinSpin(linie[3],_bet);
         sum = sum + c.getWin();
-        System.out.println("Ai castigat " + c.getWin() + " de pe linia 4");
-        c=new WinSpin(linie[4],10);
+       // System.out.println("Ai castigat " + c.getWin() + " de pe linia 4");
+        c=new WinSpin(linie[4],_bet);
         sum = sum + c.getWin();
-        System.out.println("Ai castigat " + c.getWin() + " de pe linia 5");
+       // System.out.println("Ai castigat " + c.getWin() + " de pe linia 5");
 
-        System.out.println("Ai castigat " + sum);
-
+        //System.out.println("Ai castigat " + sum);
+        String textsum = String.valueOf(sum);
+        _win.setText(textsum);
+        _sold.setText(String.format("%.2f", (Double.valueOf(_sold.getText()) + sum)));
     }
 
 }

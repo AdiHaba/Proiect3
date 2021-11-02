@@ -25,8 +25,12 @@ public class SlotMachine {
     private ImageIcon _spinIcon,_gambleIcon;
     private JToggleButton _bet10,_bet20,_bet50,_bet100,_bet200;
     private final  Color customColor = new Color(13, 0, 43);
-    private JLabel _soldLabel,_currentWinLabel;
+    private JLabel _soldLabel, _winLabel;
     private JButton _backToMenu;
+    private JTextField _sum;
+    private JTextPane _win;
+    private double _bet = 0;
+    private ActionListener _l;
 
     public SlotMachine(){
 
@@ -34,31 +38,31 @@ public class SlotMachine {
 
             readImages();
 
-
             _mainPanel = new JPanel();
             _mainPanel.setLayout(new BorderLayout());
-
-            initializeMyCenterPanelStable();
-            _mainPanel.add(_centerPanel,BorderLayout.CENTER);
-
-           initializeBotPanel();
-            _mainPanel.add(_botPanel,BorderLayout.PAGE_END);
 
             initializeTopPanel();
             _mainPanel.add(_topPanel,BorderLayout.PAGE_START);
 
-            _botPanel.setBackground(Color.lightGray);
+            initializeMyCenterPanelStable();
+            _mainPanel.add(_centerPanel,BorderLayout.CENTER);
+
+            initializeBotPanel();
+            _mainPanel.add(_botPanel,BorderLayout.PAGE_END);
+
             myFrame();
+
         }else{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-
                     readImages();
 
                     _mainPanel = new JPanel();
                     _mainPanel.setLayout(new BorderLayout());
 
+                    initializeTopPanel();
+                    _mainPanel.add(_topPanel,BorderLayout.PAGE_START);
 
                     initializeMyCenterPanelStable();
                     _mainPanel.add(_centerPanel,BorderLayout.CENTER);
@@ -66,7 +70,6 @@ public class SlotMachine {
                     initializeBotPanel();
                     _mainPanel.add(_botPanel,BorderLayout.PAGE_END);
 
-                    _botPanel.setBackground(Color.lightGray);
                     myFrame();
                 }
             });
@@ -139,25 +142,31 @@ public class SlotMachine {
 
     }
 
+
     public void initializeBotPanel(){
 
         _botPanel = new JPanel();
         _botPanel.setLayout(new FlowLayout());
+        _botPanel.setBackground(Color.lightGray);
+
+        _bet = 0.20;
+        _l = new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte, _win, _bet, _sum);
 
         try{
             _spinIcon = new ImageIcon(this.getClass().getResource("images/spin.jpg"));
             _spin = new JButton();
             _spin.setIcon(_spinIcon);
             _spin.setPreferredSize(new Dimension(70,70));
-            _spin.addActionListener(new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte));
-            _spin.addKeyListener(new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte));
+            _spin.addActionListener(_l);
+
         }catch(Exception e){
             e.printStackTrace();
         }
 
-
         _bet10 = new JToggleButton("Bet10");
         _bet10.setBackground(Color.RED);
+        _bet10.setSelected(true);
+
         _bet10.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -167,6 +176,11 @@ public class SlotMachine {
                    _bet50.setSelected(false);
                    _bet100.setSelected(false);
                    _bet200.setSelected(false);
+                   _bet = 0.20;
+                   _spin.removeActionListener(_l);
+                    _l = new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte, _win, _bet, _sum);
+                   _spin.addActionListener(_l);
+
                 } else {
                     _bet10.setBackground(Color.RED);
                 }
@@ -184,8 +198,14 @@ public class SlotMachine {
                     _bet50.setSelected(false);
                     _bet100.setSelected(false);
                     _bet200.setSelected(false);
+                    _bet = 0.50;
+                    _spin.removeActionListener(_l);
+                    _l = new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte, _win, _bet, _sum);
+                    _spin.addActionListener(_l);
+
                 } else {
                     _bet20.setBackground(Color.RED);
+
                 }
             }
         });
@@ -201,6 +221,11 @@ public class SlotMachine {
                     _bet20.setSelected(false);
                     _bet100.setSelected(false);
                     _bet200.setSelected(false);
+                    _bet = 1;
+                    _spin.removeActionListener(_l);
+                    _l = new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte, _win, _bet, _sum);
+                    _spin.addActionListener(_l);
+
                 } else {
                     _bet50.setBackground(Color.RED);
                 }
@@ -218,6 +243,12 @@ public class SlotMachine {
                     _bet20.setSelected(false);
                     _bet50.setSelected(false);
                     _bet200.setSelected(false);
+
+                  _bet = 2;
+                    _spin.removeActionListener(_l);
+                    _l = new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte, _win, _bet, _sum);
+                    _spin.addActionListener(_l);
+
                 } else {
                     _bet100.setBackground(Color.RED);
                 }
@@ -235,11 +266,18 @@ public class SlotMachine {
                     _bet20.setSelected(false);
                     _bet50.setSelected(false);
                     _bet100.setSelected(false);
+
+                    _bet = 5;
+                    _spin.removeActionListener(_l);
+                    _l = new SpinEvent(_slots,_valueSlots, _portocale , _struguri , _pruna , _lamaie , _lebenita , _cireasa, _sapte, _win, _bet, _sum);
+                    _spin.addActionListener(_l);
+
                 } else {
                     _bet200.setBackground(Color.RED);
                 }
             }
         });
+
 
         try{
             _gambleIcon = new ImageIcon(this.getClass().getResource("images/gamble.JPG"));
@@ -273,6 +311,7 @@ public class SlotMachine {
              }
          });
 
+
         _botPanel.add(_bet10);
         _botPanel.add(_bet20);
         _botPanel.add(_bet50);
@@ -291,13 +330,22 @@ public class SlotMachine {
         _soldLabel = new JLabel("Sold:");
         _soldLabel.setForeground(Color.WHITE);
         _soldLabel.setPreferredSize(new Dimension(30,20));
-
-        /*_soldLabelText = new JLabel();
-        _soldLabelText.setForeground(Color.WHITE);
-        _soldLabel.setPreferredSize(new Dimension(30,20));
-        _soldLabelText.setText("50");*/
-
         _topPanel.add(_soldLabel);
+
+        _sum = new JTextField();
+        _sum.setPreferredSize(new Dimension(80,20));
+        _sum.setText("0");
+        _topPanel.add(_sum);
+
+        _winLabel = new JLabel("Current Win:");
+        _topPanel.add(_winLabel);
+
+        _win = new JTextPane();
+        _win.setPreferredSize(new Dimension(80,20));
+        _win.setText("0");
+        _topPanel.add(_win);
+
+
     }
 
     public void readImages(){

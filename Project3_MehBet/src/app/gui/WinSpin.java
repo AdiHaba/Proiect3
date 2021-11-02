@@ -5,11 +5,7 @@ public class WinSpin {
     public int[] semn= new int[5];
     public double win=0;
 
-    public double getWin() {
-        return win;
-    }
-
-    public WinSpin(int[] semn, int sum){
+    public WinSpin(int[] semn, double sum){
 
         int numar=0;
         if(semn[0]==semn[1] && semn[1] == semn[2])
@@ -108,5 +104,7 @@ public class WinSpin {
 
         }
     }
-
+    public double getWin() {
+        return win;
+    }
 }
