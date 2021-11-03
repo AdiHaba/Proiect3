@@ -16,19 +16,31 @@ import java.sql.*;
 
 public class AdminLoginForm {
 
-    private JButton _buttonLoginUser, _buttonLoginAdmin;
+    private JButton  _buttonLoginAdmin;
     private JPanel _loginPanelAdmin;
     private JLabel _adminLabel, _passAdminLabel;
     private JTextField _getAdminname;
     private JPasswordField _getPasswordAdmin;
     private JFrame _frame;
     private JButton _backToMenu;
+    private JLabel _labelImage;
+    private ImageIcon _img;
 
     public AdminLoginForm(){
 
         _loginPanelAdmin = new JPanel();
         _loginPanelAdmin.setLayout(null);
         _loginPanelAdmin.setBackground(Color.WHITE);
+
+
+        try{
+            _img = new ImageIcon(this.getClass().getResource("images/adminMeh.JPG"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        _labelImage = new JLabel(_img);
+        _labelImage.setBounds(420,30,550,220);
+        _loginPanelAdmin.add( _labelImage);
 
 
         _adminLabel = new JLabel("Admin Username");

@@ -69,7 +69,7 @@ public class SpinThread extends Thread{
             }
 
             for (int j = 0; j < 5; ++j) {
-                _valueSlots[0][j] = r.nextInt(1, 8);
+                _valueSlots[0][j] = r.nextInt(1, 8);   //1-8
             }
 
             for (int i = 0; i < 3; ++i) {
